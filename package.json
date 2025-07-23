@@ -1,0 +1,13 @@
+{
+  "name": "catboy-uploader",
+  "version": "1.0.0",
+  "description": "A lil file uploader by justdev-chris",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^1.4.5"
+  }
+}
