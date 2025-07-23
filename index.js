@@ -6,13 +6,13 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// make sure 'uploaded' folder exists nya~
+// make sure 'uploaded' folder exists 
 const uploadDir = path.join(__dirname, 'uploaded');
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }
 
-// multer setup rawr~
+// multer setup 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, uploadDir);
@@ -33,7 +33,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// serve uploaded files as forced downloads nya~ 🐾
+// serve uploaded files as forced downloads 🐾
 app.get('/files/:filename', (req, res) => {
   const filePath = path.join(uploadDir, req.params.filename);
   if (fs.existsSync(filePath)) {
@@ -43,7 +43,7 @@ app.get('/files/:filename', (req, res) => {
   }
 });
 
-// file upload endpoint nya~
+// file upload endpoint 
 app.post('/upload', upload.single('file'), (req, res) => {
   if (!req.file) return res.status(400).send('no file uploaded, nyaaa~ 😿');
   const fileUrl = `https://api.catsdevs.online/files/${encodeURIComponent(req.file.filename)}`;
@@ -54,10 +54,10 @@ app.post('/upload', upload.single('file'), (req, res) => {
   });
 });
 
-// cute welcome page (optional)
+//  welcome page 
 app.get('/', (req, res) => {
   res.send(`
-    <h1>nya~ welcome to the uploader 💖</h1>
+    <h1>welcome to the uploader... btw why u here?</h1>
     <form action="/upload" method="POST" enctype="multipart/form-data">
       <input type="file" name="file" />
       <button type="submit">Upload File</button>
